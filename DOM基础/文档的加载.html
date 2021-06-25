@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    /*
+      浏览器在加载页面时，是按照自上向下的顺序加载的
+      读取一行就运行一行
+      将Script代码放在前面执行就会报错：
+      Uncaught TypeError: Cannot set property 'onclick' of null
+    */
+    /*
+      onload 事件会在整个页面加载完成之后才触发
+      为 window 绑定一个 onload 事件
+        该事件对应的响应将会在页面加载完成之后执行
+        这样可以确保我们代码执行时所有的DOM对象已经加载完毕了
+    */
+    window.onload = function() {
+      let btn = document.getElementById("btn");
+      btn.onclick = function() {
+        alert("hello world");
+      }
+    }
+    
+  </script>
+</head>
+<body>
+  <button id="btn">click</button>
+</body>
+
+</html>

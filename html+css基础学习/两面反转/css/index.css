@@ -1,0 +1,43 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  perspective: 300px;
+}
+
+.box {
+  position: relative;
+  margin: 200px auto;
+  width: 200px;
+  height: 200px;
+  font-size: 30px;
+  text-align: center;
+  line-height: 200px;
+  color: white;
+  font-weight: 700;
+  transition: all 0.5s;           /* 过渡 */
+  transform-style: preserve-3d;   /* 子元素开启立体空间 */
+}
+
+.box:hover {
+  transform:rotateY(-180deg);
+}
+
+.front {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-color: green;
+}
+
+.back {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-color: purple;
+  transform: rotateY(-180deg);
+}

@@ -1,0 +1,36 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #ccc;
+}
+
+.bear {
+  position: absolute;
+  overflow: hidden;
+  width: 200px;
+  height: 100px;
+  background: url(../images/bear.png) repeat-x;
+  animation: run 1s steps(8)  infinite,move 3s linear forwards;
+}
+
+@keyframes run {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position:-1600px 0;
+  }
+}
+
+@keyframes move {
+  0% {
+    left: 0;
+  }
+  100% {
+    left:50%;
+    transform: translate(-50%);
+  }
+}

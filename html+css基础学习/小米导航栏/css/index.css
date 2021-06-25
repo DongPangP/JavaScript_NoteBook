@@ -1,0 +1,14 @@
+a {
+  display: block;
+  background-color: black;
+  color: white;
+  height: 40px;
+  width: 200px;
+  text-align: center;
+  text-decoration: none;
+  line-height: 40px;
+}
+
+a:hover {
+  color: orange;
+}
