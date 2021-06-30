@@ -12,26 +12,29 @@
        let checkNoBtn = document.getElementById("checkNoBtn");
        let checkRevBtn = document.getElementById("checkRevBtn");
        let sendBtn = document.getElementById("sendBtn");
+       let checkedAllBox = document.getElementById("checkedAllBox");
+       let items = document.getElementsByName("items");
        
        checkAllBtn.onclick = function(){
-         let items = document.getElementsByName("items");
          for(let i = 0,len = items.length; i < len ; i++ ){
             items[i].checked = true;  
          }
+         checkedAllBox.checked = true;
        }
 
        checkNoBtn.onclick = function() {
-        let items = document.getElementsByName("items");
          for(let i = 0,len = items.length; i < len ; i++ ){
             items[i].checked = false;  
          }
+         checkedAllBox.checked = false;
        }
 
        checkRevBtn.onclick = function() {
-         let items = document.getElementsByName("items");
+        checkedAllBox.checked = true;
          for(let i = 0,len = items.length; i < len ; i++ ){
             if(items[i].checked === true){
               items[i].checked = false;
+              checkedAllBox.checked = false;
             }else {
               items[i].checked = true;
             } 
@@ -39,9 +42,31 @@
        }
        
        sendBtn.onclick = function() {
-         
+         for(let i = 0,len = items.length; i<len;i++){
+           if(items[i].checked){
+             alert(items[i].value);
+           }
+         }
        }
 
+       checkedAllBox.onclick = function(){
+        for(let i = 0,len = items.length; i<len;i++){
+          // 在事件的响应函数中，响应函数是给谁绑定的this就是谁
+            items[i].checked = this.checked;         
+        }
+       }
+
+        for(let i = 0,len = items.length ; i < len ; i++){
+          items[i].onclick = function() {
+            for(let j = 0,len = items.length; j < len ; j++){
+              checkedAllBox.checked = true;
+              if(!items[j].checked){
+                checkedAllBox.checked = false;
+                break;
+              }
+            }
+          }
+       }
     }
     
   </script>

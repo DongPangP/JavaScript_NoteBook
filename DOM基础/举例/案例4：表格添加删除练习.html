@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>添加删除记录练习</title>
+  <style>
+    #tab {
+      margin: 100px auto;
+      border: 2px solid black;
+      border-collapse: collapse;
+    }
+    #tab th,td {
+      border: 2px solid black;    
+    }
+
+    #form {
+      margin: 100px auto;
+      width: 300px;
+      height: 300px;
+      border: 2px solid black;
+    }
+  </style>
+  <script>
+    window.onload = function() {
+      // 首先获取所有的超链接
+      let aAll = document.getElementsByTagName("a");
+      // 为每个超链接都绑定一个单机响应函数
+      for(let i = 0 ; i < aAll.length ; i++){
+        aAll[i].onclick = function() {
+          // 获取父亲的父亲
+          let tr = this.parentNode.parentNode;
+          let flag = confirm("确认删除吗"+tr.getElementsByTagName("td")[0].innerHTML+ "？");
+          if(flag){
+            tr.parentNode.removeChild(tr);
+          }
+          //点击超链接，超链接会跳转，需要禁用这种默认行为
+          return false;
+        }
+
+        let addBtn = document.getElementById("addBtn");
+        addBtn.onclick = function() {
+          let name = document.getElementById("userName");
+          let email = document.getElementById("userEmail");
+          let salary = document.getElementById("userSalary");
+          let tbody = document.getElementsByTagName("tbody")[0];
+          let newTr = document.createElement("tr");
+          newTr.innerHTML = `
+              <td>${name.value}</td>
+              <td>${email.value}</td>
+              <td>${salary.value}</td>
+              <td><a href="#">Delete</a></td>
+          `;
+          newTr.getElementsByTagName("a")[0].onclick = function(){
+            // 获取父亲的父亲
+            let tr = this.parentNode.parentNode;
+            let flag = confirm("确认删除吗"+tr.getElementsByTagName("td")[0].innerHTML+ "？");
+            if(flag){
+              tr.parentNode.removeChild(tr);
+            }
+            //点击超链接，超链接会跳转，需要禁用这种默认行为
+            return false;
+          }
+          tbody.appendChild(newTr);
+          return false;
+        }
+      }
+    }
+  </script>
+</head>
+<body>
+  <table id="tab">
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Salary</th>
+      <th>操作</th>
+    </tr>
+    <tr>
+      <td>TOM</td>
+      <td>tom@tom.com</td>
+      <td>5000</td>
+      <td><a href="#">Delete</a></td>
+    </tr>
+    <tr>
+      <td>Jerry</td>
+      <td>jerry@sohu.com</td>
+      <td>8000</td>
+      <td><a href="#">Delete</a></td>
+    </tr>
+    <tr>
+      <td>Bob</td>
+      <td>bob@tom.com</td>
+      <td>10000</td>
+      <td><a href="#">Delete</a></td>
+    </tr>
+  </table>
+
+  <form action="" id="form">
+     <h2>添加新员工</h2>
+     <div>
+      name:<input type="text" name="name" id="userName">
+     </div>
+     <div>
+      email:<input type="text" name="email" id="userEmail">
+     </div>
+     <div>
+      salary:<input type="text" name="salary" id="userSalary">
+     </div>
+     <div>
+       <button id="addBtn" >提交</button>
+     </div>
+  </form>
+  
+</body>
+</html>
