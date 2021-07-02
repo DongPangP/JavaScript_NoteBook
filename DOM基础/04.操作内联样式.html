@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #box1 {
+      width: 200px;
+      height: 200px;
+      background-color: red;
+    }
+  </style>
+  <script>
+    window.onload = function() {
+      let box1 = document.getElementById("box1");
+      let btn = document.getElementById("btn");
+      btn.onclick = function() {
+        // 通过JS修改元素的样式
+        // 语法： 元素.style.样式名 = 样式值
+        // 通过 style 属性设置的样式是内联样式
+        // 而内联样式有较高的优先级，所以通过JS修改的样式往往会立即显示
+        // 但是如果在样式中使用 ！important ，则此时样式具有最高的优先级
+        box1.style.width = "300px";
+        box1.style.height = "300px";
+        box1.style.backgroundColor = "yellow";
+      }
+      let btn2 = document.getElementById("btn2");
+      btn2.onclick = function() {
+        // 读取box1的样式
+        // 语法：元素.style.样式名
+        // 获取的是box1的内联样式
+        alert(box1.style.width);
+      }
+
+    }
+  </script>
+</head>
+<body>
+  <button id="btn">click me</button>
+  <button id="btn2">click2</button>
+  <div id="box1"></div>
+  
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #box1 {
+      width: 100px;
+      height: 100px;
+      background-color: red;
+      position: absolute;
+    }
+  </style>
+  <script>
+    window.onload = function() {
+      // 获取box1
+      const div = document.getElementById("box1");
+      // 这种情况下只能往下移，需要给文档绑定事件
+      // box1.onmousemove = function(event) {
+      //   // 解决兼容性问题
+      //   event = event || window.event;
+
+      //   // 获取鼠标的坐标
+      //   let left = event.clientX;
+      //   let top = event.clientY;
+      //   box1.style.left = left + "px";
+      //   box1.style.top = top + "px";
+      // }
+
+      document.onmousemove = function(event) {
+        // 解决兼容性问题
+        event = event || window.event;
+
+        // 获取鼠标的坐标
+        /*
+          获取滚动条滚动的距离
+        */
+        let st = document.documentElement.scrollTop;
+        let lt = document.documentElement.scrollLeft;
+
+        /*
+          clientX 和 clientY 
+            用于获取鼠标在当前可见窗口的坐标
+          div的偏移量，是相对于整个页面的
+        */
+        /*
+          pageX 和 pageY 可以获取鼠标相对于当前页面的坐标
+          但是这两个属性在 IE8 中不支持 
+        */
+        let left = event.clientX;
+        let top = event.clientY;
+        box1.style.left = left + lt + "px";
+        box1.style.top = top + st +"px";
+      }
+    }
+  </script>
+</head>
+<body>
+  <div id="box1"></div>
+</body>
+</html>
