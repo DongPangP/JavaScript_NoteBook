@@ -1,0 +1,12 @@
+{
+  "include": [
+    "./src/**/*"
+  ],
+  "compilerOptions": {
+    "target": "ES2015",
+    "module": "ES2015",
+    "alwaysStrict": true,
+    "noImplicitAny": true,
+    "outDir": "./dist"
+  }
+}
